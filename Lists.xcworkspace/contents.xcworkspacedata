@@ -2,9 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Lists-iOS/Lists.xcodeproj">
+      location = "group:Mac/../README.md">
    </FileRef>
    <FileRef
-      location = "group:Lists-Mac/Lists.xcodeproj">
+      location = "group:iOS/Lists.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Mac/Lists.xcodeproj">
    </FileRef>
 </Workspace>
