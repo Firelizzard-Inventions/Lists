@@ -4,6 +4,22 @@
    <FileRef
       location = "group:Mac/../README.md">
    </FileRef>
+   <Group
+      location = "container:"
+      name = "SQL">
+      <FileRef
+         location = "group:SQL/all.sql">
+      </FileRef>
+      <FileRef
+         location = "group:SQL/list.sql">
+      </FileRef>
+      <FileRef
+         location = "group:iOS/../SQL/group.sql">
+      </FileRef>
+      <FileRef
+         location = "group:SQL/link.sql">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:iOS/Lists.xcodeproj">
    </FileRef>

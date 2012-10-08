@@ -10,13 +10,7 @@
 
 @interface ListsAppDelegate : NSObject <NSApplicationDelegate> {
 	NSWindow *window;
-	UINavigationBar *navbar;
-	UINavigationBar *navbar;
-	UITableView *navbar;
 }
-@property (nonatomic, retain) IBOutlet UITableView *navbar;
-@property (nonatomic, retain) IBOutlet UINavigationBar *navbar;
-@property (nonatomic, retain) IBOutlet UINavigationBar *navbar;
 
 @property (assign) IBOutlet NSWindow *window;
 

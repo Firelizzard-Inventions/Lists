@@ -13,9 +13,6 @@
 @synthesize fart;
 @synthesize table;
 @synthesize navbar;
-@synthesize navbar;
-@synthesize navbar;
-@synthesize navbar;
 @synthesize window;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -25,11 +22,7 @@
 
 - (void)dealloc {
     [table release];
-    [table release];
     [fart release];
-    [navbar release];
-    [navbar release];
-    [navbar release];
     [navbar release];
     [super dealloc];
 }
