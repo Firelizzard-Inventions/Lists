@@ -15,8 +15,6 @@
 
 @synthesize parent;
 
-#pragma mark - Lifecycle Methods
-
 - (void)setup
 {
 	[super setup];
@@ -30,23 +28,6 @@
 	self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	entries = [model entriesOfType:FIEntryTypeAll withParent:parent];
 }
-
-#pragma mark - Internal Methods
-
-- (NSDictionary *)entryForIndex:(NSIndexPath *)indexPath
-{
-	if ([indexPath indexAtPosition:0] == 0) {
-		if ([indexPath length] > 2) {
-			return [model entryOfType:FIEntryTypeAll forIndex:indexPath withParent:parent];
-		} else {
-			return [entries objectAtIndexOrNil:[indexPath indexAtPosition:1]];
-		}
-	} else {
-		return [NSDictionary dictionaryWithObject:[[NSNumber numberWithInteger:FIViewEmptySectionError] stringValue] forKey:@"error"];
-	}
-}
-
-#pragma mark - View Controller Methods
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
@@ -72,8 +53,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	NSDictionary * entry = [model entryOfType:FIEntryTypeAll forIndex:selected withParent:parent];
-	NSString * error = [model validateEntry:entry];
+	NSDictionary * entry = [self entryForIndex:selected];
+	NSNumber * error = [model validateEntry:entry];
 	
 	if ([FIListsOpenGroupSegue isEqualToString:segue.identifier]) {
 		FIListsViewController * nextController = segue.destinationViewController;
@@ -84,7 +65,7 @@
 		} else {
 			nextController.parent = [NSNumber numberWithInteger:-1];
 			nextController.title = @"Error";
-			nextController.navigationItem.prompt = error;
+			nextController.navigationItem.prompt = [error stringValue];
 		}
 	} else if ([FIListsEditGroupSegue isEqualToString:segue.identifier]) {
 		FIEditGroupController * nextController = segue.destinationViewController;
@@ -96,7 +77,7 @@
 		} else {
 			nextController.group = [NSNumber numberWithInteger:-1];
 			nextController.title = @"Error";
-			nextController.navigationItem.prompt = error;
+			nextController.navigationItem.prompt = [error stringValue];
 		}
 		
 		updating = YES;
@@ -111,7 +92,26 @@
 	}
 }
 
-#pragma mark - Delegate Methods
+@end
+
+@implementation FIListsViewController (Internal)
+
+- (NSDictionary *)entryForIndex:(NSIndexPath *)indexPath
+{
+	if ([indexPath indexAtPosition:0] == 0) {
+		if ([indexPath length] > 2) {
+			return [model entryOfType:FIEntryTypeAll forIndex:indexPath withParent:parent];
+		} else {
+			return [entries objectAtIndexOrNil:[indexPath indexAtPosition:1]];
+		}
+	} else {
+		return [NSDictionary dictionaryWithObject:[[NSNumber numberWithInteger:FIViewEmptySectionError] stringValue] forKey:@"error"];
+	}
+}
+
+@end
+
+@implementation FIListsViewController (UITableViewDelegate)
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -141,7 +141,7 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSDictionary * entry = [model entryOfType:FIEntryTypeAll forIndex:indexPath withParent:parent];
+	NSDictionary * entry = [self entryForIndex:indexPath];
 	
 	if ([model validateEntry:entry]) {
 		return UITableViewCellEditingStyleNone;
@@ -150,7 +150,9 @@
 	}
 }
 
-#pragma mark - Datasource Methods
+@end
+
+@implementation FIListsViewController (UITableViewDataSource)
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -169,7 +171,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSDictionary * entry = [self entryForIndex:indexPath];
-	NSString * error = [model validateEntry:entry];
+	NSNumber * error = [model validateEntry:entry];
 	if (error == nil || [error isNull]) {
 		NSString * type = [entry objectForKey:FIEntryKeyType];
 		if ([FIEntryTypeGroup isEqualToString:type]) {
@@ -190,7 +192,10 @@
 	}
 }
 
-#pragma mark - Database Listener Methods
+@end
+
+@implementation FIListsViewController (FIDataControllerListener)
+
 - (void)executedChange:(NSString *)query onTable:(NSString *)table
 {
 	if (([@"_t_group" isEqualToString:table] || [@"_t_list" isEqualToString:table]) && !updating) {

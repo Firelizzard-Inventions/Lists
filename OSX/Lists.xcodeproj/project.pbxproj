@@ -127,6 +127,9 @@
 /* Begin PBXProject section */
 		42920816142BD01000D96F4F /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
 			buildConfigurationList = 42920819142BD01000D96F4F /* Build configuration list for PBXProject "Lists" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -245,6 +248,7 @@
 		4292083E142BD01100D96F4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lists/Lists-Prefix.pch";
 				INFOPLIST_FILE = "Lists/Lists-Info.plist";
@@ -256,6 +260,7 @@
 		4292083F142BD01100D96F4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lists/Lists-Prefix.pch";
 				INFOPLIST_FILE = "Lists/Lists-Info.plist";

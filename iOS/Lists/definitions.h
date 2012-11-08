@@ -37,6 +37,7 @@
 #define FIEntryKeyType				@"type"
 #define FIEntryKeyParent			@"parent"
 #define FIEntryKeyError				@"error"
+#define FIEntryKeyECode				@"ecode"
 
 #define FIEntryTypeGroup			@"group"
 #define FIEntryTypeList				@"list"

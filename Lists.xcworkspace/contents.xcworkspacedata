@@ -8,16 +8,16 @@
       location = "container:"
       name = "SQL">
       <FileRef
-         location = "group:SQL/all.sql">
+         location = "group:iOS/../SQL/group.sql">
       </FileRef>
       <FileRef
          location = "group:SQL/list.sql">
       </FileRef>
       <FileRef
-         location = "group:iOS/../SQL/group.sql">
+         location = "group:SQL/link.sql">
       </FileRef>
       <FileRef
-         location = "group:SQL/link.sql">
+         location = "group:SQL/all.sql">
       </FileRef>
    </Group>
    <FileRef

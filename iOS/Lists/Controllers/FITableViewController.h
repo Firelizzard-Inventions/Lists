@@ -16,7 +16,11 @@
 
 - (void)setup;
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForError:(NSString *)error;
+@end
+
+@interface FITableViewController (Internal)
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForError:(NSNumber *)error;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForEntry:(NSDictionary *)entry;
 
 @end

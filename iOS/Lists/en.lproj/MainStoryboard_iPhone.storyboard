@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="OXE-J6-rFT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="OXE-J6-rFT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
@@ -9,7 +9,7 @@
             <objects>
                 <tableViewController id="uxG-dt-N4F" userLabel="Lists View" customClass="FIListsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4GL-tn-1z3">
-                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -21,7 +21,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Group" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74N-ye-gH6">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
@@ -40,7 +40,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="List" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfe-Gs-vDM">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
@@ -48,7 +48,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="p7l-VB-lXG" kind="push" identifier="com.firelizzard.Lists.segue.lists.open.list" id="pXG-uz-pNl"/>
+                                    <segue destination="Kw3-oI-Fee" kind="push" identifier="com.firelizzard.Lists.segue.lists.open.list" id="kli-vF-8jf"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="com.firelizzard.Lists.uielem.error" textLabel="GGO-ku-jZw" detailTextLabel="eac-vF-Cfc" style="IBUITableViewCellStyleValue1" id="Yo8-2i-Sgd">
@@ -85,7 +85,8 @@
                     <navigationItem key="navigationItem" title="Lists" id="cS7-zu-4q4">
                         <barButtonItem key="backBarButtonItem" title="Back" id="hwh-vs-A0D"/>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addButtonItem" destination="fjw-yL-UJj" id="Inm-gq-dCm"/>
                         <segue destination="BrA-kK-xdc" kind="push" identifier="com.firelizzard.Lists.segue.lists.edit.group" id="ZIw-OR-Pqw"/>
@@ -106,7 +107,9 @@
             <objects>
                 <navigationController definesPresentationContext="YES" toolbarHidden="NO" id="T4G-eW-QBf" userLabel="Edit Navigation View" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="aVT-aM-xZv"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="chy-uP-4tk">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -181,6 +184,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Amr-A5-uzw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -221,6 +225,8 @@
                         </sections>
                     </tableView>
                     <navigationItem key="navigationItem" title="More" id="RMh-NY-XFv"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ds1-aG-K6T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -244,7 +250,7 @@
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Group" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iI8-uS-Emi">
                                             <rect key="frame" x="10" y="0.0" width="260" height="43"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
@@ -264,7 +270,7 @@
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="List" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cho-W0-tof">
                                             <rect key="frame" x="10" y="0.0" width="260" height="43"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
@@ -272,11 +278,30 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="p7l-VB-lXG" kind="push" identifier="com.firelizzard.Lists.segue.lists.open.list" id="vBO-HX-tb5"/>
+                                    <segue destination="Kw3-oI-Fee" kind="push" identifier="com.firelizzard.Lists.segue.lists.open.list" id="Bc1-5g-dZD"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="com.firelizzard.Lists.uielem.table" textLabel="E20-Lo-0cV" style="IBUITableViewCellStyleDefault" id="Udu-dd-1M3">
+                                <rect key="frame" x="0.0" y="135" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Table" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E20-Lo-0cV">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <segue destination="Blm-zs-nGl" kind="push" id="h3A-rS-34O"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="com.firelizzard.Lists.uielem.error" textLabel="8tl-8t-Q9X" detailTextLabel="f7B-3p-HP7" style="IBUITableViewCellStyleValue1" id="UU2-h3-qwr">
-                                <rect key="frame" x="0.0" y="135" width="320" height="45"/>
+                                <rect key="frame" x="0.0" y="179" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="10" y="0.0" width="280" height="43"/>
@@ -314,9 +339,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="BrA-kK-xdc" kind="push" identifier="com.firelizzard.Lists.segue.lists.edit.group" id="Hvc-hJ-iTL"/>
                         <segue destination="b3z-6J-p1H" kind="push" identifier="com.firelizzard.Lists.segue.lists.edit.list" id="IuJ-PS-6t8"/>
+                        <segue destination="VUK-PR-hZz" kind="push" identifier="com.firelizzard.Lists.segue.lists.edit.table" id="XGd-gU-pEw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4V0-1Z-dxD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -328,7 +356,10 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="gcG-xM-yzp" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="more" id="lPr-OB-nZO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="euX-JN-zqT">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -340,17 +371,43 @@
             <point key="canvasLocation" x="247" y="-1097"/>
         </scene>
         <!--List View-->
-        <scene sceneID="k8Z-5f-PuE">
+        <scene sceneID="aZd-8E-8GI">
             <objects>
-                <viewController id="p7l-VB-lXG" userLabel="List View" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="RD6-BD-BFC">
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="Kw3-oI-Fee" userLabel="List View" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="5Lr-vi-y1v">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="List" id="F0E-pN-dcU"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0eK-RO-Fvw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wbu-kk-UQ0">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PQF-HC-Cur">
+                                <rect key="frame" x="0.0" y="50" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="6BR-s8-Bxg">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="Kw3-oI-Fee" id="tdj-VD-ZWA"/>
+                            <outlet property="delegate" destination="Kw3-oI-Fee" id="TdM-FU-TUa"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="List" id="gV5-RC-bHL"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="35y-1A-JWr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2129" y="-1097"/>
         </scene>
@@ -364,17 +421,34 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Error" id="qhp-us-hzp"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="32L-cq-SBt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2129" y="-1806"/>
+        </scene>
+        <!--Table View-->
+        <scene sceneID="x5p-7S-YML">
+            <objects>
+                <viewController id="Blm-zs-nGl" userLabel="Table View" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WZ2-Ac-w1S">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Qwf-3s-Yrs"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vGf-Wn-wW6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2820" y="-1806"/>
         </scene>
         <!--Edit Group View-->
         <scene sceneID="6uo-bi-HbW">
             <objects>
                 <tableViewController id="BrA-kK-xdc" userLabel="Edit Group View" customClass="FIEditGroupController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="DTU-Kc-NIG">
-                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -444,7 +518,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="nameField" destination="J2q-ta-DWH" id="07r-8O-bBh"/>
                         <outlet property="parentLabel" destination="HxC-K9-4bf" id="Ij4-38-Jfs"/>
@@ -459,7 +533,7 @@
             <objects>
                 <tableViewController id="LEb-7w-DZ4" userLabel="Groups View" customClass="FIGroupsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="tra-sn-HqV">
-                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -471,7 +545,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Group" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Vs-8y-sX2">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
@@ -495,6 +569,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBw-RC-2da" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -580,6 +655,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="nameField" destination="dYg-Tn-plW" id="yNX-nS-nya"/>
                         <outletCollection property="tableLabels" destination="QzC-cj-g7i" id="RuU-be-sS8"/>
@@ -704,6 +780,7 @@
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="hJC-f4-Ggm"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="vhE-Bw-l04"/>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XhL-BB-WxW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="Wpu-J3-pTO" userLabel="Primary">
@@ -780,6 +857,7 @@
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="XAV-jI-W2C"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="UW0-7b-p4Y"/>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="erh-Yx-6Og" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -790,6 +868,7 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="lkP-oY-d1d" userLabel="List Navigation View" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Lists" id="dBV-jG-Ikb"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fkg-2a-Ube">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
@@ -811,7 +890,6 @@
         <scene sceneID="V0a-Si-U9n">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="OXE-J6-rFT" userLabel="Home View" sceneMemberID="viewController">
-                    <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Fpj-1n-7oL">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -829,6 +907,66 @@
             <point key="canvasLocation" x="-369" y="-391"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="FIAddEntryController" superclassName="FITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIAddEntryController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+            </relationships>
+        </class>
+        <class className="FIAllViewController" superclassName="FITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIAllViewController.h"/>
+        </class>
+        <class className="FIDataController" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIDataController.h"/>
+        </class>
+        <class className="FIEditGroupController" superclassName="FITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIEditGroupController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="parentLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FIEditListController" superclassName="FITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIEditListController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
+                <relationship kind="outletCollection" name="tableLabels" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FIGroupsViewController" superclassName="FITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIGroupsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+            </relationships>
+        </class>
+        <class className="FIListsViewController" superclassName="FITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FIListsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addButtonItem" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="FITableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FITableViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -836,11 +974,12 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="IuJ-PS-6t8"/>
-        <segue reference="vBO-HX-tb5"/>
-        <segue reference="Hvc-hJ-iTL"/>
+        <segue reference="Bc1-5g-dZD"/>
         <segue reference="2u9-w9-ogs"/>
-        <segue reference="vrU-2B-br6"/>
+        <segue reference="Hvc-hJ-iTL"/>
+        <segue reference="XGd-gU-pEw"/>
         <segue reference="hvd-WI-DPp"/>
+        <segue reference="vrU-2B-br6"/>
         <segue reference="lZ9-Kt-6uT"/>
     </inferredMetricsTieBreakers>
 </document>

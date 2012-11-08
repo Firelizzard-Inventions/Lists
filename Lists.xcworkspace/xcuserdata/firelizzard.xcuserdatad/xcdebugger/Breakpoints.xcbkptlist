@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iOS/Lists/Model/SQLiteDB.m"
-         timestampString = "371342241.491438"
+         timestampString = "371677071.398567"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "242"
-         endingLineNumber = "242"
+         startingLineNumber = "181"
+         endingLineNumber = "181"
          landmarkName = "-execute:with:varguments:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -66,6 +66,19 @@
          startingLineNumber = "17"
          endingLineNumber = "17"
          landmarkName = "-setup"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iOS/Lists/Model/FIDataController.m"
+         timestampString = "371677071.398567"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "32"
+         endingLineNumber = "32"
+         landmarkName = "-initWithPath:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -9,7 +9,7 @@
 #import "FITableViewController.h"
 
 @interface FIAllViewController : FITableViewController {
-	NSArray * groups, * lists;
+	NSArray * groups, * lists, * tables;
 }
 
 @end

@@ -18,4 +18,11 @@
 @property (strong) NSNumber * parent;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButtonItem;
 
+
+@end
+
+@interface FIListsViewController (Internal)
+
+- (NSDictionary *)entryForIndex:(NSIndexPath *)indexPath;
+
 @end

@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FIAppDelegate : UIResponder <UIApplicationDelegate>
+#import "FIDataController.h"
+
+@interface FIAppDelegate : UIResponder <UIApplicationDelegate> {
+	FIDataController * model;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

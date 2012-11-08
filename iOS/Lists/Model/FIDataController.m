@@ -8,17 +8,6 @@
 
 #import "FIDataController.h"
 
-@implementation NSArray (orNull)
-- (id)objectAtIndexOrNil:(NSUInteger)index
-{
-	if (index < [self count]) {
-		return [self objectAtIndex:index];
-	} else {
-		return nil;
-	}
-}
-@end
-
 @implementation FIDataController
 
 static FIDataController *defaultController = nil;
@@ -28,7 +17,7 @@ static FIDataController *defaultController = nil;
 + (FIDataController *)defaultController {
 	@synchronized(self) {
 		if (defaultController == nil) {
-			defaultController = [[FIDataController alloc] initWithPath:[SQLiteDB masterDBPath]];
+			defaultController = [[FIDataController alloc] initWithPath:[FIDataController masterDBPath]];
 		}
 	}
 	return defaultController;
@@ -40,24 +29,30 @@ static FIDataController *defaultController = nil;
 {
     self = [super init];
     if (self) {
+		int status;
+		
 		master = [[SQLiteDB alloc] initWithFile:path];
 		
 		listeners = [[NSMutableArray alloc] init];
 		
 		NSFileManager *manager = [NSFileManager defaultManager];
 		if (![manager fileExistsAtPath:path]) {
-			int status = 0;
 			
-			NSString * groupq = [NSString stringWithContentsOfFile:[SQLiteDB groupSQLPath] encoding:NSASCIIStringEncoding error:nil];
-			NSString * listq = [NSString stringWithContentsOfFile:[SQLiteDB listSQLPath] encoding:NSASCIIStringEncoding error:nil];
-			NSString * allq = [NSString stringWithContentsOfFile:[SQLiteDB allSQLPath] encoding:NSASCIIStringEncoding error:nil];
-			NSString * query = [[groupq stringByAppendingString:listq] stringByAppendingString:allq];
+			NSString * groupq = [NSString stringWithContentsOfFile:[FIDataController groupSQLPath] encoding:NSASCIIStringEncoding error:nil];
+			NSString * listq = [NSString stringWithContentsOfFile:[FIDataController listSQLPath] encoding:NSASCIIStringEncoding error:nil];
+			NSString * linkq = [NSString stringWithContentsOfFile:[FIDataController linkSQLPath] encoding:NSASCIIStringEncoding error:nil];
+			NSString * allq = [NSString stringWithContentsOfFile:[FIDataController allSQLPath] encoding:NSASCIIStringEncoding error:nil];
 			
+			status = 0;
 			if (!status) status = [master open];
-			if (!status) status = [master execute:@"%@", query];
+			if (!status) status = [master execute:@"%@", groupq];
+			if (!status) status = [master execute:@"%@", listq];
+			if (!status) status = [master execute:@"%@", linkq];
+			if (!status) status = [master execute:@"%@", allq];
 			if (!status) status = [master close];
 		}
 		
+		master.foreignKeys = YES;
 		[master addListener:self];
     }
     return self;
@@ -66,6 +61,34 @@ static FIDataController *defaultController = nil;
 - (void)dealloc
 {
 	[self ensureClose];
+}
+
+#pragma mark - Location Methods
+
++ (NSString *)masterDBPath
+{
+	NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	return [dir stringByAppendingPathComponent:@"master.db"];
+}
+
++ (NSString *)groupSQLPath
+{
+	return [[NSBundle mainBundle] pathForResource:@"group" ofType:@"sql"];
+}
+
++ (NSString *)listSQLPath
+{
+	return [[NSBundle mainBundle] pathForResource:@"list" ofType:@"sql"];
+}
+
++ (NSString *)linkSQLPath
+{
+	return [[NSBundle mainBundle] pathForResource:@"link" ofType:@"sql"];
+}
+
++ (NSString *)allSQLPath
+{
+	return [[NSBundle mainBundle] pathForResource:@"all" ofType:@"sql"];
 }
 
 #pragma mark - Database Methods
@@ -84,13 +107,19 @@ static FIDataController *defaultController = nil;
 {
 	va_list args;
 	__block NSMutableArray * results = [[NSMutableArray alloc] init];
+	callback block = ^(NSDictionary * row) {
+		[results addObject:[NSDictionary dictionaryWithDictionary:row]];
+	};
 	
 	va_start(args, query);
 	[master ensureOpen];
-	[master execute:query with:^(NSDictionary * row) {
-		[results addObject:[NSDictionary dictionaryWithDictionary:row]];
-	} varguments:args];
+	int status = [master execute:query with:block	varguments:args];
 	va_end(args);
+	
+	if (status) {
+		[results addObject:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[master lastError], [NSNumber numberWithInteger:status+FIDatabaseGenericError], nil]
+													   forKeys:[NSArray arrayWithObjects:FIEntryKeyError, FIEntryKeyECode, nil]]];
+	}
 	
 	return [NSArray arrayWithArray:results];
 }
@@ -109,24 +138,24 @@ static FIDataController *defaultController = nil;
 
 #pragma mark - Entry Methods
 
-- (NSString *)validateEntry:(NSDictionary *)entry
+- (NSNumber *)validateEntry:(NSDictionary *)entry
 {
-	NSString * error =	[entry objectForKey:FIEntryKeyError];
+	NSNumber * error =	[entry objectForKey:FIEntryKeyECode];
 	NSNumber * _id =	[entry objectForKey:FIEntryKeyID];
 	NSString * name =	[entry objectForKey:FIEntryKeyName];
 	NSString * type =	[entry objectForKey:FIEntryKeyType];
 //	NSNumber * parent =	[entry objectForKey:FIEntryKeyParent];
 	
 	if (entry == nil || [entry isNull]) {
-		return [[NSNumber numberWithInt:FIModelNullResultError] stringValue];
+		return [NSNumber numberWithInt:FIModelNullResultError];
 	} else if (error != nil && ![error isNull]) {
 		return error;
 	} else if (_id == nil || [_id isNull]) {
-		return [[NSNumber numberWithInt:FIModelNullIDError] stringValue];
+		return [NSNumber numberWithInt:FIModelNullIDError];
 	} else if (name == nil || [name isNull]) {
-		return [[NSNumber numberWithInt:FIModelNullNameError] stringValue];
+		return [NSNumber numberWithInt:FIModelNullNameError];
 	} else if (type == nil || [type isNull]) {
-		return [[NSNumber numberWithInt:FIModelNullTypeError] stringValue];
+		return [NSNumber numberWithInt:FIModelNullTypeError];
 //	} else if (parent == nil || [parent isNull]) {
 //		return [[NSNumber numberWithInt:FIModelNullParentError] stringValue];
 	} else {
@@ -135,7 +164,7 @@ static FIDataController *defaultController = nil;
 		} else if ([FIEntryTypeList isEqualToString:type]) {
 			return nil;
 		} else {
-			return [[NSNumber numberWithInt:FIModelUnknownTypeError] stringValue];
+			return [NSNumber numberWithInt:FIModelUnknownTypeError];
 		}
 	}
 }
@@ -155,10 +184,6 @@ static FIDataController *defaultController = nil;
 		where = temp;
 	} else {
 		where = [NSString stringWithFormat:@"%@ AND %@", where, temp];
-	}
-	
-	if (![FIEntryTypeGroup isEqualToString:type]) {
-		where = [NSString stringWithFormat:@"%@ AND is_primary", where];
 	}
 	
 	if (_id != nil && ![_id isNull]) {
@@ -210,7 +235,7 @@ static FIDataController *defaultController = nil;
 		return [self countOfEntriesOfType:type withParent:parent];
 	else {
 		NSDictionary * entry = [self entryOfType:type forIndex:indexPath atPosition:1 withParent:parent];
-		NSString * error = [self validateEntry:entry];
+		NSNumber * error = [self validateEntry:entry];
 		if (error == nil || [error isNull]) {
 			return [self countOfEntriesOfType:type withParent:[entry objectForKey:FIEntryKeyID]];
 		} else {
@@ -222,9 +247,9 @@ static FIDataController *defaultController = nil;
 - (NSDictionary *)entryOfType:(NSString *)type forIndex:(NSIndexPath *)indexPath atPosition:(NSUInteger)position withParent:(NSNumber *)parent
 {
 	NSDictionary * entry = [[self entriesOfType:type withParent:parent] objectAtIndexOrNil:[indexPath indexAtPosition:position++]];
-	NSString * error = [self validateEntry:entry];
+	NSNumber * error = [self validateEntry:entry];
 	if (error != nil && ![error isNull]) {
-		return [NSDictionary dictionaryWithObject:error forKey:FIEntryKeyError];
+		return [NSDictionary dictionaryWithObject:error forKey:FIEntryKeyECode];
 	} else if (position < [indexPath length]) {
 		return [self entryOfType:type forIndex:indexPath atPosition:position withParent:[entry objectForKey:FIEntryKeyID]];
 	} else {

@@ -58,7 +58,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	NSDictionary * entry = [self entryForIndex:selected];
-	NSString * error = [model validateEntry:entry];
+	NSNumber * error = [model validateEntry:entry];
 	
 	if ([FIListsOpenGroupSegue isEqualToString:[segue identifier]]) {
 		FIGroupsViewController * nextController = [segue destinationViewController];
@@ -69,7 +69,7 @@
 		} else {
 			nextController.parent = [NSNumber numberWithInteger:-1];
 			nextController.title = @"Error";
-			nextController.navigationItem.prompt = error;
+			nextController.navigationItem.prompt = [error stringValue];
 		}
 	}
 }
@@ -79,6 +79,11 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return selected = indexPath;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return UITableViewCellEditingStyleNone;
 }
 
 #pragma mark - Datasource Methods

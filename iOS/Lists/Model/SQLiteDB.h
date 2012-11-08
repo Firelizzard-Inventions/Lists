@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 
+#import "DBListener.h"
+
+#import "NSObject+isNull.h"
+#import "NSString+isNull.h"
+#import "NSString+isNumber.h"
+
 // This defines the error code that denotes there was an issue getting a lock
 #define SQLITE_DB_NOLOCK	-1
 
@@ -19,26 +25,6 @@
 
 typedef void (^callback)(NSDictionary *);
 typedef __strong callback*	callbackptr;
-
-@interface NSObject (isNull)
-- (BOOL)isNull;
-@end
-
-@interface NSString (isNull)
-- (BOOL)isNull;
-@end
-
-@interface NSString (isNumber)
-- (BOOL)isInteger;
-@end
-
-@protocol DBListener <NSObject>
-
-@optional
-- (void)executed:(NSString *)query;
-- (void)executed:(NSString *)query onTable:(NSString *)table;
-
-@end
 
 @interface SQLiteDB : NSObject {
 	// This is the internal SQLite database structure
@@ -61,17 +47,11 @@ typedef __strong callback*	callbackptr;
 	NSMutableArray * listeners;
 }
 
+@property BOOL foreignKeys;
+@property (strong) NSString * lastError;
+
 // Lifecycle Methods
 - (id)initWithFile:(NSString *)path;
-
-// This is used for number conversion
-+ (NSCharacterSet *)nonDigits;
-
-// Path Methods - shouldn't be here
-+ (NSString *)masterDBPath;
-+ (NSString *)groupSQLPath;
-+ (NSString *)listSQLPath;
-+ (NSString *)allSQLPath;
 
 // The callback function for sqlite3_exec()
 int execcb(void * passed, int numcols, char **vals, char **cols);

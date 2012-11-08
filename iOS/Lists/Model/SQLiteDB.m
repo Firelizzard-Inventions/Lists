@@ -8,39 +8,9 @@
 
 #import "SQLiteDB.h"
 
-@implementation NSObject (isNull)
-
-- (BOOL)isNull
-{
-	return self == [NSNull null];
-}
-
-@end
-
-@implementation NSString (isNull)
-
-- (BOOL)isNull
-{
-	if ([super isNull]) {
-		return YES;
-	} else {
-		return [self isEqualToString:@""];
-	}
-}
-
-@end
-
-@implementation NSString (isNumber)
-
-- (BOOL)isInteger
-{
-	NSRange range = [self rangeOfCharacterFromSet:[SQLiteDB nonDigits]];
-	return NSNotFound == range.location;
-}
-
-@end
-
 @implementation SQLiteDB
+
+@synthesize foreignKeys, lastError;
 
 #pragma mark - Lifecycle Methods
 
@@ -66,39 +36,6 @@
 	}
 	
 	return self;
-}
-
-#pragma mark - Protocol Methods
-
-+ (NSCharacterSet *)nonDigits
-{
-	static NSCharacterSet * nonDigits = nil;
-	if (nonDigits == nil)
-		nonDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-	return nonDigits;
-}
-
-#pragma mark - Location Methods
-
-+ (NSString *)masterDBPath
-{
-	NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	return [dir stringByAppendingPathComponent:@"master.db"];
-}
-
-+ (NSString *)groupSQLPath
-{
-	return [[NSBundle mainBundle] pathForResource:@"group" ofType:@"sql"];
-}
-
-+ (NSString *)listSQLPath
-{
-	return [[NSBundle mainBundle] pathForResource:@"list" ofType:@"sql"];
-}
-
-+ (NSString *)allSQLPath
-{
-	return [[NSBundle mainBundle] pathForResource:@"all" ofType:@"sql"];
 }
 
 #pragma mark - SQLite Callback Function
@@ -155,6 +92,10 @@ int execcb(void * passed, int numcols, char **vals, char **cols)
 	if (status == SQLITE_OK) {
 		[open unlock];
 		is_open = YES;
+		
+		if (foreignKeys) {
+			[self execute:@"PRAGMA foreign_keys = ON"];
+		}
 	}
 	
 	return status;
@@ -239,10 +180,12 @@ int execcb(void * passed, int numcols, char **vals, char **cols)
 	char * err;
 	NSString * query = [[NSString alloc] initWithFormat:queryf arguments:args];
 	
+	lastError = nil;
+	
 	if ([exec tryLock]) {
 		if ([open tryLock]) {
 			if (block != NULL) status = sqlite3_exec(internaldb, [query cStringUsingEncoding:NSASCIIStringEncoding], &execcb, &block, &err);
-			else status = sqlite3_exec(internaldb, [query cStringUsingEncoding:NSASCIIStringEncoding], &execcb, NULL, &err);
+			else status = sqlite3_exec(internaldb, [query cStringUsingEncoding:NSASCIIStringEncoding], NULL, NULL, &err);
 			[open unlock];
 		} else {
 			status = SQLITE_DB_NOLOCK;
@@ -253,7 +196,10 @@ int execcb(void * passed, int numcols, char **vals, char **cols)
 	}
 	
 	if (status != SQLITE_OK) {
-		if (err != NULL) sqlite3_free(err);
+		if (err != NULL) {
+			lastError = [NSString stringWithCString:err encoding:NSASCIIStringEncoding];
+			sqlite3_free(err);
+		}
 	} else {
 		for (NSTextCheckingResult * result in [_query matchesInString:query options:0 range:NSMakeRange(0, [query length])]) {
 			NSArray * selectrs = [select matchesInString:query options:0 range:[result range]];

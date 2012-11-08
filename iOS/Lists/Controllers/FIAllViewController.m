@@ -17,6 +17,7 @@
 	[super setup];
 	groups = [model execute:@"SELECT * FROM _t_all WHERE type='group' ORDER BY name ASC"];
 	lists = [model execute:@"SELECT * FROM _t_all WHERE type='list' ORDER BY name ASC"];
+	//	tables = [model execute:@"SELECT * FROM sq"]
 }
 
 #pragma mark - Internal Methods

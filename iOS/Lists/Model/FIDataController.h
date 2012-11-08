@@ -9,25 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "definitions.h"
+
 #import "SQLiteDB.h"
+#import "FIDataControllerListener.h"
 
-@protocol FIDataControllerListener
-
-@optional
-- (void)executed:(NSString *)query;
-
-- (void)executed:(NSString *)query onTable:(NSString *)table;
-- (void)executedSelectOnTable:(NSString *)table;
-- (void)executedInsertOnTable:(NSString *)table;
-- (void)executedUpdateOnTable:(NSString *)table;
-- (void)executedDeleteOnTable:(NSString *)table;
-- (void)executedChange:(NSString *)query onTable:(NSString *)table;
-
-@end
-
-@interface NSArray (orNull)
-- (id)objectAtIndexOrNil:(NSUInteger)index;
-@end
+#import "NSArray+orNull.h"
 
 @interface FIDataController : NSObject <DBListener> {
 	SQLiteDB * master;
@@ -50,7 +36,7 @@
 - (void)removeListener:(NSObject<FIDataControllerListener> *)listener;
 
 // Entry Methods
-- (NSString *)validateEntry:(NSDictionary *)entry;
+- (NSNumber *)validateEntry:(NSDictionary *)entry;
 
 // Select Methods
 - (NSArray *)columns:(NSString *)select ofEntriesOfType:(NSString *)type withID:(NSNumber *)_id andParent:(NSNumber *)parent where:(NSString *)where and:(NSString *)other;

@@ -31,6 +31,11 @@
 		42B6DE1A161FD64F00E9AAC3 /* FIGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B6DE19161FD64F00E9AAC3 /* FIGroupsViewController.m */; };
 		42B6DE1D16229A0900E9AAC3 /* FIEditListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B6DE1C16229A0900E9AAC3 /* FIEditListController.m */; };
 		42B6DE201622A53300E9AAC3 /* FIAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B6DE1F1622A53300E9AAC3 /* FIAllViewController.m */; };
+		42B6DE221623500800E9AAC3 /* link.sql in Resources */ = {isa = PBXBuildFile; fileRef = 42B6DE211623500800E9AAC3 /* link.sql */; };
+		42FBE2C71627517A002DB3CC /* NSArray+orNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FBE2C61627517A002DB3CC /* NSArray+orNull.m */; };
+		42FBE2CA162751D4002DB3CC /* NSObject+isNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FBE2C9162751D4002DB3CC /* NSObject+isNull.m */; };
+		42FBE2CD1627521B002DB3CC /* NSString+isNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FBE2CC1627521B002DB3CC /* NSString+isNull.m */; };
+		42FBE2D016275287002DB3CC /* NSString+isNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FBE2CF16275287002DB3CC /* NSString+isNumber.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +77,17 @@
 		42B6DE1C16229A0900E9AAC3 /* FIEditListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FIEditListController.m; path = Controllers/FIEditListController.m; sourceTree = "<group>"; };
 		42B6DE1E1622A53300E9AAC3 /* FIAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FIAllViewController.h; path = Controllers/FIAllViewController.h; sourceTree = "<group>"; };
 		42B6DE1F1622A53300E9AAC3 /* FIAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FIAllViewController.m; path = Controllers/FIAllViewController.m; sourceTree = "<group>"; };
+		42B6DE211623500800E9AAC3 /* link.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = link.sql; sourceTree = "<group>"; };
+		42FBE2C51627517A002DB3CC /* NSArray+orNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+orNull.h"; path = "Categories/NSArray+orNull.h"; sourceTree = "<group>"; };
+		42FBE2C61627517A002DB3CC /* NSArray+orNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+orNull.m"; path = "Categories/NSArray+orNull.m"; sourceTree = "<group>"; };
+		42FBE2C8162751D4002DB3CC /* NSObject+isNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+isNull.h"; path = "Categories/NSObject+isNull.h"; sourceTree = "<group>"; };
+		42FBE2C9162751D4002DB3CC /* NSObject+isNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+isNull.m"; path = "Categories/NSObject+isNull.m"; sourceTree = "<group>"; };
+		42FBE2CB1627521B002DB3CC /* NSString+isNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+isNull.h"; path = "Categories/NSString+isNull.h"; sourceTree = "<group>"; };
+		42FBE2CC1627521B002DB3CC /* NSString+isNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+isNull.m"; path = "Categories/NSString+isNull.m"; sourceTree = "<group>"; };
+		42FBE2CE16275287002DB3CC /* NSString+isNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+isNumber.h"; path = "Categories/NSString+isNumber.h"; sourceTree = "<group>"; };
+		42FBE2CF16275287002DB3CC /* NSString+isNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+isNumber.m"; path = "Categories/NSString+isNumber.m"; sourceTree = "<group>"; };
+		42FBE2D2162752FE002DB3CC /* DBListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DBListener.h; path = Protocols/DBListener.h; sourceTree = "<group>"; };
+		42FBE2D31627537E002DB3CC /* FIDataControllerListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FIDataControllerListener.h; path = Protocols/FIDataControllerListener.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +143,8 @@
 				429FF519161D37F000DD71FC /* MainStoryboard_iPad.storyboard */,
 				429FF540161D7B7E00DD71FC /* Controllers */,
 				429FF56B161D7CC700DD71FC /* Model */,
+				42FBE2C416275147002DB3CC /* Categories */,
+				42FBE2D1162752E6002DB3CC /* Protocols */,
 				429FF505161D37F000DD71FC /* Supporting Files */,
 			);
 			path = Lists;
@@ -194,9 +212,34 @@
 				42B43098161EF083009743A2 /* all.sql */,
 				42B43099161EF083009743A2 /* group.sql */,
 				42B4309A161EF083009743A2 /* list.sql */,
+				42B6DE211623500800E9AAC3 /* link.sql */,
 			);
 			name = SQL;
 			path = ../../SQL;
+			sourceTree = "<group>";
+		};
+		42FBE2C416275147002DB3CC /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				42FBE2C51627517A002DB3CC /* NSArray+orNull.h */,
+				42FBE2C61627517A002DB3CC /* NSArray+orNull.m */,
+				42FBE2C8162751D4002DB3CC /* NSObject+isNull.h */,
+				42FBE2C9162751D4002DB3CC /* NSObject+isNull.m */,
+				42FBE2CB1627521B002DB3CC /* NSString+isNull.h */,
+				42FBE2CC1627521B002DB3CC /* NSString+isNull.m */,
+				42FBE2CE16275287002DB3CC /* NSString+isNumber.h */,
+				42FBE2CF16275287002DB3CC /* NSString+isNumber.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		42FBE2D1162752E6002DB3CC /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				42FBE2D2162752FE002DB3CC /* DBListener.h */,
+				42FBE2D31627537E002DB3CC /* FIDataControllerListener.h */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +303,7 @@
 				42B4309B161EF083009743A2 /* all.sql in Resources */,
 				42B4309C161EF083009743A2 /* group.sql in Resources */,
 				42B4309D161EF083009743A2 /* list.sql in Resources */,
+				42B6DE221623500800E9AAC3 /* link.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +325,10 @@
 				42B6DE1A161FD64F00E9AAC3 /* FIGroupsViewController.m in Sources */,
 				42B6DE1D16229A0900E9AAC3 /* FIEditListController.m in Sources */,
 				42B6DE201622A53300E9AAC3 /* FIAllViewController.m in Sources */,
+				42FBE2C71627517A002DB3CC /* NSArray+orNull.m in Sources */,
+				42FBE2CA162751D4002DB3CC /* NSObject+isNull.m in Sources */,
+				42FBE2CD1627521B002DB3CC /* NSString+isNull.m in Sources */,
+				42FBE2D016275287002DB3CC /* NSString+isNumber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
